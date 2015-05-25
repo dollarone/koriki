@@ -16,30 +16,14 @@ TopDownGame.Game.prototype = {
     this.mountainLayer = this.map.createLayer('mountainLayer');
     this.blockedLayer = this.map.createLayer('blockedLayer');
 
-    // map.addTilesetImage('lametiles5','tiles');                
-    layer[0] = this.backgroundLayer; //map.createLayer('backgroundLayer');
-    //layer[0].resizeWorld();
-    layer[1] = this.mountainLayer; //map.createLayer('mountainLayer');
-    //layer[1].resizeWorld();
-    //layer[1].scrollFactorX = 0.5;
-    layer[2] = this.blockedLayer; //map.createLayer('blockedLayer');
-    //layer[2].visible = false;
-    layer[2].alpha = 100;
-    //layer[1].visible = true;
-    layer[0].resizeWorld();
-    //layer[3] = map.createLayer('foregroundbushes');
-    //layer[3].resizeWorld();
-    //layer[3].scrollFactorX = 1.4;
-//    map.setCollision([2,3],true,'ground');      
-    //create layer
-
     //resizes the game world to match the layer dimensions
-    //this.backgroundLayer.resizeWorld();
+    this.backgroundLayer.resizeWorld();
 
     //collision on blockedLayer
     this.map.setCollisionBetween(1, 2000, true, 'blockedLayer');
-//    this.blockedLayer.visible = false;
-   // this.mountainLayer.visible = true;
+    this.blockedLayer.visible = false;
+    this.mountainLayer.visible = true;
+
 
     this.createItems();
     this.createDoors();    

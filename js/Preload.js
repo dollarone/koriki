@@ -14,10 +14,10 @@ TopDownGame.Preload.prototype = {
     //load game assets
     this.load.tilemap('level1', 'assets/tilemaps/ogre2.json', null, Phaser.Tilemap.TILED_JSON);
     this.load.image('gameTiles', 'assets/images/example.png');
-    this.load.image('greencup', 'assets/images/greencup.png');
-    this.load.image('bluecup', 'assets/images/bluecup.png');
-    this.load.image('player', 'assets/images/player.png');
-    this.load.image('browndoor', 'assets/images/browndoor.png');
+    this.load.image('potion', 'assets/images/potion.png');
+    this.load.image('coin', 'assets/images/coin.png');
+    this.load.image('player', 'assets/images/playr.png');
+    this.load.image('browndoor', 'assets/images/player.png');
     
   },
   create: function() {

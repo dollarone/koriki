@@ -6,7 +6,7 @@ TopDownGame.Boot = function(){};
 TopDownGame.Boot.prototype = {
   preload: function() {
     //assets we'll use in the loading screen
-    this.load.image('preloadbar', 'assets/images/preloader-bar.png');
+    this.load.image('preloadbar', 'assets/images/loadingbar.png');
   },
   create: function() {
     //loading screen will have a black background

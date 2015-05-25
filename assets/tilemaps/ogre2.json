@@ -61,7 +61,7 @@
                  "name":"",
                  "properties":
                     {
-                     "sprite":"greencup",
+                     "sprite":"coin",
                      "type":"item"
                     },
                  "rotation":0,
@@ -78,7 +78,7 @@
                  "name":"",
                  "properties":
                     {
-                     "sprite":"bluecup",
+                     "sprite":"potion",
                      "type":"item"
                     },
                  "rotation":0,
