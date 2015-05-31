@@ -26,6 +26,6 @@ Koriki.Preload.prototype = {
     
   },
   create: function() {
-    this.state.start('MainMenu');
+    this.state.start('MainMenu'); //, true, true);
   }
 };
