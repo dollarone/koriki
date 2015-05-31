@@ -1,9 +1,9 @@
-var TopDownGame = TopDownGame || {};
+var Koriki = Koriki || {};
 
-TopDownGame.Boot = function(){};
+Koriki.Boot = function(){};
 
 //setting game configuration and loading the assets for the loading screen
-TopDownGame.Boot.prototype = {
+Koriki.Boot.prototype = {
   preload: function() {
     //assets we'll use in the loading screen
     this.load.image('preloadbar', 'assets/images/loadingbar.png');

@@ -1,9 +1,10 @@
-var TopDownGame = TopDownGame || {};
+var Koriki = Koriki || {};
 
-TopDownGame.game = new Phaser.Game(320, 320, Phaser.AUTO, '');
+Koriki.game = new Phaser.Game(320, 320, Phaser.AUTO, '');
 
-TopDownGame.game.state.add('Boot', TopDownGame.Boot);
-TopDownGame.game.state.add('Preload', TopDownGame.Preload);
-TopDownGame.game.state.add('Game', TopDownGame.Game);
+Koriki.game.state.add('Boot', Koriki.Boot);
+Koriki.game.state.add('Preload', Koriki.Preload);
+Koriki.game.state.add('MainMenu', Koriki.MainMenu);
+Koriki.game.state.add('Game', Koriki.Game);
 
-TopDownGame.game.state.start('Boot');
+Koriki.game.state.start('Boot');
