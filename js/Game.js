@@ -12,6 +12,9 @@ Koriki.Game.prototype = {
     this.map = this.game.add.tilemap('level1');
 
     this.velocity = 50;
+    this.counter = 199;
+    this.trollMove = 0;
+    this.trollMoves = [0,0,3,0,6,3,2,3,6,2,1,2,1,0,6,6,2,1,0,3,6,2,1,2,3,0,6,2,1,6];
 
     //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
     this.map.addTilesetImage('example', 'gameTiles');
@@ -180,8 +183,14 @@ Koriki.Game.prototype = {
 
       // Invert scale.x to flip left/right
       this.player.scale.x *= -1;
+      
+    }
+    if((this.trollMoves[this.trollMove] == 1 && this.counter == 1) 
+      || (this.trollMoves[this.trollMove] == 1 && this.counter == 149)) {
+       // // 0=down,1=left,2=up,3=right
+      // Invert scale.x to flip left/right
       this.troll.scale.x *= -1;
-      console.log('flip');
+      
     }
 
     this.marker.x = this.math.snapToFloor(Math.floor(this.player.x), 16);
@@ -189,10 +198,6 @@ Koriki.Game.prototype = {
     var i = this.blockedLayer.index;
     var x = this.marker.x / 16;
     var y = this.marker.y / 16;
-
-    console.log(i);
-    console.log(x);
-    console.log(y);
 
     this.directions[Phaser.LEFT] = this.map.getTileLeft(i, x, y);
     this.directions[Phaser.RIGHT] = this.map.getTileRight(i, x, y);
@@ -276,7 +281,7 @@ Koriki.Game.prototype = {
       }
       this.player.animations.play('walk_right', 10, false);
 
-      player_direction = 3;
+      player_direction = 3; /// // 0=down,1=left,2=up,3=right
     }
     else if(this.cursors.left.isDown) {
       if(Math.abs(this.player.x - this.marker.x) < 1 &&
@@ -319,96 +324,149 @@ Koriki.Game.prototype = {
       }
     }
 
-    // TROLL      
-    
+    // TROLL. Bottom tile is #20
     this.marker.x = this.math.snapToFloor(Math.floor(this.troll.x), 16);
-    this.marker.y = this.math.snapToFloor(Math.floor(this.troll.y), 16);
+    this.marker.y = this.math.snapToFloor(Math.floor(this.troll.y + 8), 16);
     var i = this.blockedLayer.index;
     var x = this.marker.x / 16;
     var y = this.marker.y / 16;
     this.marker.x += 8;
     this.marker.y;
 
-    if(this.cursors.up.isDown) {
-      if(this.troll.x == this.marker.x) {
-        this.troll.body.velocity.y -= this.velocity;
-      }
-      else if(Math.abs(this.troll.x - this.marker.x) < 1) {
-        this.troll.x = this.marker.x;
-      }
-      else if(this.troll.x < this.marker.x) {
-        this.troll.x += 1;
-      }
-      else if(this.troll.x > this.marker.x) {
-        this.troll.x -= 1;
-      }
-      this.troll.animations.play('walk_up', 10, false);
-      troll_direction = 2;
-    }
-    else if(this.cursors.down.isDown) {
-      if(this.troll.x == this.marker.x) {
-        this.troll.body.velocity.y += this.velocity;
-      }
-      else if(Math.abs(this.troll.x - this.marker.x) < 1) {
-        this.troll.x = this.marker.x;
-      }
-      else if(this.troll.x < this.marker.x) {
-        this.troll.x += 1;
-      }
-      else if(this.troll.x > this.marker.x) {
-        this.troll.x -= 1;
-      }
-      this.troll.animations.play('walk_down', 10, false);
-      troll_direction = 0;
-    }
-    else if(this.cursors.right.isDown) {
-      if(this.troll.y == this.marker.y) {
-        this.troll.body.velocity.x += this.velocity;
-      }
-      else if(Math.abs(this.troll.y - this.marker.y) < 1) {
-        this.troll.y = this.marker.y;
-      }
-      else if(this.troll.y < this.marker.y) {
-        this.troll.y += 1;
-      }
-      else if(this.troll.y > this.marker.y) {
-        this.troll.y -= 1;
-      }
-      this.troll.animations.play('walk_right', 10, false);
+    console.log(this.troll.x);
+    console.log(this.troll.y);
+    console.log(this.marker.x);
+    console.log(this.marker.y);
+    console.log('--');
 
-      troll_direction = 3;
+    if(this.trollMove > 29) {
+      this.trollMove = 1;
+      //this.trollMove = this.game.rnd.integerInRange(1, 6);
     }
-    else if(this.cursors.left.isDown) {
-      if(this.troll.y == this.marker.y) {
-        this.troll.body.velocity.x -= this.velocity;
-      }
-      else if(Math.abs(this.troll.y - this.marker.y) < 1) {
-        this.troll.y = this.marker.y;
-      }
-      else if(this.troll.y < this.marker.y) {
-        this.troll.y += 1;
-      }
-      else if(this.troll.y > this.marker.y) {
-        this.troll.y -= 1;
-      }
-      this.troll.animations.play('walk_left', 10, false);
-
-      troll_direction = 1;
+    this.counter += 1;
+    if(this.counter > 150) {
+      this.counter = 1;
+      this.trollMove += 1;
     }
     else {
-      // if facing down ...
-      if(troll_direction == 0) {
-        this.troll.frame = 9;
+      switch(this.trollMoves[this.trollMove]) {
+        case 2: 
+          if(this.troll.x == this.marker.x) {
+              if(this.map.getTileAbove(i, x, y).index == -1 || Math.abs(this.troll.y - this.marker.y) > 1) {
+                this.troll.body.velocity.y -= this.velocity;
+                this.troll.animations.play('walk_up', 10, false);
+              }
+              else {
+                this.troll.frame = 15;
+              }
+
+          }
+          else if(Math.abs(this.troll.x - this.marker.x) < 1) {
+            this.troll.x = this.marker.x;
+            this.troll.animations.play('walk_up', 10, false);
+          }
+          else if(this.troll.x < this.marker.x) {
+            this.troll.x += 1;
+            this.troll.animations.play('walk_up', 10, false);
+          }
+          else if(this.troll.x > this.marker.x) {
+            this.troll.x -= 1;
+            this.troll.animations.play('walk_up', 10, false);
+          }
+          
+          troll_direction = 2;
+          break;
+        case 0: 
+          if(this.troll.x == this.marker.x) {
+            if(this.map.getTileBelow(i, x, y).index == -1 || Math.abs(this.troll.y - this.marker.y) > 1) {
+              this.troll.body.velocity.y += this.velocity;
+              this.troll.animations.play('walk_down', 10, false);
+            }
+            else {
+              this.troll.frame = 9;
+            }
+          }
+          else if(Math.abs(this.troll.x - this.marker.x) < 1) {
+            this.troll.x = this.marker.x;
+            this.troll.animations.play('walk_down', 10, false);
+          }
+          else if(this.troll.x < this.marker.x) {
+            this.troll.x += 1;
+            this.troll.animations.play('walk_down', 10, false);
+          }
+          else if(this.troll.x > this.marker.x) {
+            this.troll.x -= 1;
+            this.troll.animations.play('walk_down', 10, false);
+          }
+          
+          troll_direction = 0;
+          break;
+        case 3: 
+          if(this.troll.y == this.marker.y) {
+              if(this.map.getTileRight(i, x, y).index == -1 || Math.abs(this.troll.x - this.marker.x) > 1) {
+                this.troll.body.velocity.x += this.velocity;
+                this.troll.animations.play('walk_right', 10, false);
+              }
+              else {
+                this.troll.frame = 12;
+                // // 0=down,1=left,2=up,3=right
+              }
+          }
+          else if(Math.abs(this.troll.y - this.marker.y) < 1) {
+            this.troll.y = this.marker.y;
+            this.troll.animations.play('walk_right', 10, false);
+          }
+          else if(this.troll.y < this.marker.y) {
+            this.troll.y += 1;
+            this.troll.animations.play('walk_right', 10, false);
+          }
+          else if(this.troll.y > this.marker.y) {
+            this.troll.y -= 1;
+            this.troll.animations.play('walk_right', 10, false);
+          }
+          troll_direction = 3;
+          break;
+        case 1: 
+          if(this.troll.y == this.marker.y) {
+              if(this.map.getTileLeft(i, x, y).index == -1 || Math.abs(this.troll.x - this.marker.x) > 1) {
+                this.troll.body.velocity.x -= this.velocity;
+                this.troll.animations.play('walk_left', 10, false);
+              }
+              else {
+                this.troll.frame = 12;
+                // // 0=down,1=left,2=up,3=right
+              }
+          }
+          else if(Math.abs(this.troll.y - this.marker.y) < 1) {
+            this.troll.y = this.marker.y;
+            this.troll.animations.play('walk_left', 10, false);
+          }
+          else if(this.troll.y < this.marker.y) {
+            this.troll.y += 1;
+            this.troll.animations.play('walk_left', 10, false);
+          }
+          else if(this.troll.y > this.marker.y) {
+            this.troll.y -= 1;
+            this.troll.animations.play('walk_left', 10, false);
+          }
+          troll_direction = 1;
+          break;
+        default:
+              // if facing down ...
+          if(troll_direction == 0) {
+            this.troll.frame = 9;
+          }
+          else if(troll_direction == 1) {
+            this.troll.frame = 12;
+          }
+          else if(troll_direction == 2) {
+            this.troll.frame = 15;
+          }
+          else if(troll_direction == 3) {
+            this.troll.frame = 12;
+          }
+        
       }
-      else if(troll_direction == 1) {
-        this.troll.frame = 12;
-      }
-      else if(troll_direction == 2) {
-        this.troll.frame = 15;
-      }
-      else if(troll_direction == 3) {
-        this.troll.frame = 12;
-      }      
     }
   },
   collect: function(player, collectable) {

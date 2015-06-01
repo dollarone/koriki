@@ -28,7 +28,7 @@
          "name":"blockedLayer",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":72,
          "x":0,
          "y":0
@@ -92,12 +92,12 @@
                  "type":"",
                  "visible":true,
                  "width":16,
-                 "x":560,
-                 "y":524
+                 "x":272,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":72,
          "x":0,
          "y":0
@@ -119,7 +119,7 @@
          "name":"waterLayer",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":72,
          "x":0,
          "y":0
@@ -133,7 +133,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "image":"..\/images\/example.png",
+         "image":"..\/Downloads\/example.png",
          "imageheight":128,
          "imagewidth":128,
          "margin":0,
