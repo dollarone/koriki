@@ -21,6 +21,7 @@ Koriki.Preload.prototype = {
     this.load.image('titlepage', 'assets/images/example.png');
 
     this.game.load.spritesheet('all_sprites', 'assets/images/example.png', 16, 16);
+    
     //, 64, 0, 0);
 
     

@@ -6,11 +6,18 @@ Koriki.Game = function(){};
 var player_direction = 0; // 0=down,1=left,2=up,3=right
 var troll_direction = 0; // 0=down,1=left,2=up,3=right
 //var velocity = 10;
+var reg = {};
 
 Koriki.Game.prototype = {
   create: function() {
+
+    reg.modal = new gameModal(this.game);
+    this.createModals();
+
+    var m2 = this.game.add.button(50, 50, "m2", this.showModal2);
     this.map = this.game.add.tilemap('level1');
 
+    this.paused = false;
     this.velocity = 50;
     this.counter = 199;
     this.trollMove = 0;
@@ -157,6 +164,18 @@ Koriki.Game.prototype = {
  
   },
   update: function() {
+    //player movement
+    this.player.body.velocity.y = 0;
+    this.player.body.velocity.x = 0;
+
+    this.troll.body.velocity.y = 0;
+    this.troll.body.velocity.x = 0;
+
+    if(this.paused) {
+      console.log('continue');
+      sleep(10000);
+    }
+    else {
     //collision
     this.game.physics.arcade.collide(this.player, this.blockedLayer);
     this.game.physics.arcade.overlap(this.player, this.items, this.collect, null, this);
@@ -166,13 +185,6 @@ Koriki.Game.prototype = {
     this.game.physics.arcade.collide(this.player, this.waterLayer, null, this.walkingInWater, this);
     
     this.game.physics.arcade.collide(this.troll, this.blockedLayer);
-
-    //player movement
-    this.player.body.velocity.y = 0;
-    this.player.body.velocity.x = 0;
-
-    this.troll.body.velocity.y = 0;
-    this.troll.body.velocity.x = 0;
 
     if((player_direction == 1 && 
          //!this.cursors.left.isDown && // not obvious but makes sense I ASSURE YOU
@@ -465,7 +477,7 @@ Koriki.Game.prototype = {
           else if(troll_direction == 3) {
             this.troll.frame = 12;
           }
-        
+        }
       }
     }
   },
@@ -489,7 +501,9 @@ Koriki.Game.prototype = {
   },
   respawnPlayer: function(currentPlayer) {
     //player.destroy();
-    this.player.x += 10;
+    //this.player.x += 10;
+    this.paused = true;
+    this.showModal5();
     
   },
   winSequence: function() {
@@ -504,4 +518,69 @@ Koriki.Game.prototype = {
     return false;
     
   },
+  createModals: function() {
+    // 
+//offsetX | The offset on x-axis of the element from the center of the game (0 is dead center)
+//offsetY | The offset on y-axis of the element from the center of the game (0 is dead center)
+    reg.modal.createModal({
+      type:"modal2",
+      includeBackground: true,
+      modalCloseOnInput: true,
+      itemsArr: [
+          {
+              type: "text",
+              content: "Seriously???",
+              fontFamily: "Luckiest Guy",
+              fontSize: 42,
+              color: "0xFEFF49",
+              offsetY: 50
+          },
+        {
+              type: "image",
+              content: "example",
+              offsetY: -50,
+              contentScale: 0.6
+          }
+      ]
+    });
+    reg.modal.createModal({
+              type:"modal5",
+              includeBackground: false,
+              modalCloseOnInput: true,
+    itemsArr: [
+                  {
+                      type: "image",
+                      content: "example",
+                      offsetY: -20,
+                      contentScale: 1
+              },
+                  {
+                      type: "image",
+                      content: "player",
+                      contentScale: 0.5,
+                      offsetY: -80
+              },
+                  {
+                          type : "text",
+                          content: "X",
+                      fontSize: 52,
+                          color: "0x000000",
+                          offsetY: -130,
+                      offsetX: 240,
+                          callback: function(){
+                        reg.modal.hideModal("modal5");
+                        this.paused = false;
+                      }
+              }
+                  
+              ]
+     });
+  },
+  showModal2: function(){
+    reg.modal.showModal("modal2");
+  },
+
+  showModal5: function() {
+    reg.modal.showModal("modal5");
+  }  
 };
