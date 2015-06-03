@@ -181,30 +181,13 @@
                  "name":"",
                  "properties":
                     {
-                     "pos":"npc1",
-                     "sprite":"npc",
+                     "name":"Gargoyle",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":557,
-                 "y":568
-                }, 
-                {
-                 "gid":19,
-                 "height":0,
-                 "name":"",
-                 "properties":
-                    {
-                     "pos":"npc2",
-                     "sprite":"npc",
-                     "type":"npc"
-                    },
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":480,
+                 "x":474,
                  "y":502
                 }, 
                 {
@@ -213,15 +196,14 @@
                  "name":"",
                  "properties":
                     {
-                     "order":"5",
-                     "sprite":"npc",
+                     "name":"Mina",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":717,
-                 "y":333
+                 "x":716,
+                 "y":307
                 }, 
                 {
                  "gid":19,
@@ -229,15 +211,14 @@
                  "name":"",
                  "properties":
                     {
-                     "order":"4",
-                     "sprite":"npc",
+                     "name":"Evert",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":717,
-                 "y":305
+                 "x":714,
+                 "y":332
                 }, 
                 {
                  "gid":19,
@@ -245,15 +226,14 @@
                  "name":"",
                  "properties":
                     {
-                     "order":"3",
-                     "sprite":"npc",
+                     "name":"Balder",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":585,
-                 "y":502
+                 "x":588,
+                 "y":500
                 }, 
                 {
                  "gid":19,
@@ -261,15 +241,14 @@
                  "name":"",
                  "properties":
                     {
-                     "order":"8",
-                     "sprite":"npc",
+                     "name":"Mei",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":382,
-                 "y":623
+                 "x":474,
+                 "y":572
                 }, 
                 {
                  "gid":19,
@@ -277,15 +256,14 @@
                  "name":"",
                  "properties":
                     {
-                     "order":"6",
-                     "sprite":"npc",
+                     "name":"Henrik",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":472,
-                 "y":547
+                 "x":477,
+                 "y":552
                 }, 
                 {
                  "gid":19,
@@ -293,15 +271,14 @@
                  "name":"",
                  "properties":
                     {
-                     "order":"7",
-                     "sprite":"npc",
+                     "name":"Sara",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":506,
-                 "y":571
+                 "x":496,
+                 "y":573
                 }, 
                 {
                  "gid":19,
@@ -309,14 +286,28 @@
                  "name":"",
                  "properties":
                     {
-                     "order":"11",
-                     "sprite":"npc",
+                     "name":"Matteo",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":688,
+                 "x":380,
+                 "y":624
+                }, 
+                {
+                 "gid":19,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "name":"Pan",
+                     "type":"npc"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":687,
                  "y":292
                 }, 
                 {
@@ -325,15 +316,14 @@
                  "name":"",
                  "properties":
                     {
-                     "order":"10",
-                     "sprite":"npc",
+                     "name":"Lloris",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":684,
-                 "y":333
+                 "x":552,
+                 "y":502
                 }, 
                 {
                  "gid":19,
@@ -341,15 +331,29 @@
                  "name":"",
                  "properties":
                     {
-                     "order":"9",
-                     "sprite":"npc",
+                     "name":"Elysa",
                      "type":"npc"
                     },
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":556,
-                 "y":517
+                 "x":681,
+                 "y":332
+                }, 
+                {
+                 "gid":19,
+                 "height":0,
+                 "name":"",
+                 "properties":
+                    {
+                     "name":"Tarald",
+                     "type":"npc"
+                    },
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":566,
+                 "y":572
                 }],
          "opacity":1,
          "type":"objectgroup",

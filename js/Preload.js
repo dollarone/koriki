@@ -9,10 +9,12 @@ Koriki.Preload.prototype = {
     this.preloadBar = this.add.sprite(this.game.world.centerX, this.game.world.centerY + 128, 'preloadbar');
     this.preloadBar.anchor.setTo(0.5);
 
+    this.currentSpriteSheetName = 'spritesheet0';
     this.load.setPreloadSprite(this.preloadBar);
     this.load.tilemap('level1', 'assets/tilemaps/ogre3.json', null, Phaser.Tilemap.TILED_JSON);   
     this.load.image('titlepage', 'assets/images/koriki-title.png');
 
+    this.game.load.spritesheet('spritesheet0', 'assets/images/example.png', 16, 16);
     this.game.load.spritesheet('spritesheet1', 'assets/spritesheets/0270b2a45452255c4d69b4883854ff19.png', 16, 16);
     this.game.load.spritesheet('spritesheet2', 'assets/spritesheets/078d4316cfffb7e3d314fc2b967077bb.png', 16, 16);
     this.game.load.spritesheet('spritesheet3', 'assets/spritesheets/08d2b8e62824ea7b3b549eb919154097.png', 16, 16);

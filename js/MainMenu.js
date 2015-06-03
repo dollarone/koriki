@@ -7,18 +7,15 @@ Koriki.MainMenu = function (game) {
 
 };
 
-var currentSpriteSheetName;
-
 Koriki.MainMenu.prototype = {
 
 	create: function() {
 
 		// this.music = this.add.audio('titleMusic');
 		// this.music.play();
-
-		this.currentSpriteSheetName = 'spritesheet3';
-		currentSpriteSheetName = this.currentSpriteSheetName;
 		this.add.sprite(0, 0, 'titlepage'); // background
+
+		this.currentSpriteSheetName = 'spritesheet0';
 
 	    this.bigbackground = this.game.add.graphics(0, 0);
 	    this.bigbackground.beginFill(0xFFFFFF);
@@ -52,7 +49,6 @@ Koriki.MainMenu.prototype = {
 			allSheets[i]= i;
 		}
 		this.currentSpriteSheetName = 'spritesheet' + Phaser.ArrayUtils.getRandomItem(allSheets);
-				currentSpriteSheetName = this.currentSpriteSheetName;
 
 	    this.bigbackground = this.game.add.graphics(0, 0);
 	    this.bigbackground.beginFill(0xFFFFFF);
