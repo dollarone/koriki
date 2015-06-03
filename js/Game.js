@@ -16,7 +16,14 @@ Koriki.Game.prototype = {
     this.player_direction = 0; // 0=down,1=left,2=up,3=right
     this.troll_direction = 0; // 0=down,1=left,2=up,3=right
     
+//    this.map = this.game.add.tilemap('level1');
+//currentSpriteSheetName = 'spritesheet1';
+this.currentSpriteSheetName = currentSpriteSheetName;
     this.map = this.game.add.tilemap('level1');
+    console.log("TEST " + this.currentSpriteSheetName);
+    this.map.addTilesetImage('example', this.currentSpriteSheetName);
+//    this.currentSpriteSheet = this.map.addTilesetImage('example', this.currentSpriteSheetName);
+
 
     this.velocity = 50;
     this.watervelocity = 30;
@@ -26,7 +33,7 @@ Koriki.Game.prototype = {
     this.trollMoves = [0,0,3,0,6,3,2,3,6,2,1,2,1,0,6,6,2,1,0,3,6,2,1,2,3,0,6,2,1,6];
 
     //the first parameter is the tileset name as specified in Tiled, the second is the key to the asset
-    this.currentTileSet = this.map.addTilesetImage('example', 'gameTiles2');    
+//    this.currentTileSet = this.map.addTilesetImage('example', 'gameTiles2');    
     //this.currentTileSet = this.map.addTilesetImage('objectLayer', 'gameTiles2');
 
     this.backgroundLayer = this.map.createLayer('backgroundLayer');
@@ -49,10 +56,10 @@ Koriki.Game.prototype = {
 
     //create player
     var result = this.findObjectsByType('playerStart', this.map, 'objectsLayer');
-    this.player = this.game.add.sprite(result[0].x, result[0].y, 'all_sprites'); 
+    this.player = this.game.add.sprite(result[0].x, result[0].y, this.currentSpriteSheetName); //'all_sprites'); 
     //'game_spritesheet'); // max length of var?
     var result = this.findObjectsByType('trollStart', this.map, 'objectsLayer');
-    this.troll = this.game.add.sprite(result[0].x, result[0].y, 'all_sprites');
+    this.troll = this.game.add.sprite(result[0].x, result[0].y, this.currentSpriteSheetName); //'all_sprites');
 
     this.game.physics.arcade.enable(this.player);
     this.game.physics.arcade.enable(this.troll);
@@ -255,7 +262,7 @@ var ivn = 1;
   },
   //create a sprite from an object
   createFromTiledObject: function(element, group) {
-    var sprite = group.create(element.x, element.y, 'all_sprites');//element.properties.sprite);
+    var sprite = group.create(element.x, element.y, this.currentSpriteSheetName); //'all_sprites');//element.properties.sprite);
 
       //copy all properties to the sprite
       Object.keys(element.properties).forEach(function(key){
@@ -699,7 +706,7 @@ var ivn = 1;
   },
   nextTileSet: function() {
     //this.map.addTilesetImage('example', 'gameTiles' + this.tileSetNum);
-    this.currentTileSet.setImage('assets/images/example2.png');
+    //his.currentTileSet.setImage('assets/images/example2.png');
   },
   enterCombat: function(currentPlayer, troll) {
     if(this.recentlyInCombat) {

@@ -7,7 +7,7 @@ Koriki.MainMenu = function (game) {
 
 };
 
-var enterkey;
+var currentSpriteSheetName;
 
 Koriki.MainMenu.prototype = {
 
@@ -16,22 +16,24 @@ Koriki.MainMenu.prototype = {
 		// this.music = this.add.audio('titleMusic');
 		// this.music.play();
 
-		this.tileset = new Phaser.Tileset('all_sprites', 0);
+		this.currentSpriteSheetName = 'spritesheet3';
+		currentSpriteSheetName = this.currentSpriteSheetName;
+		this.add.sprite(0, 0, 'titlepage'); // background
 
-		
-		//this.tileset.setImage('http://swapshop.pixelsyntax.com/api/randomImage');
+	    this.bigbackground = this.game.add.graphics(0, 0);
+	    this.bigbackground.beginFill(0xFFFFFF);
+	    this.bigbackground.drawRect(20, 100, 128, 128);
+	    this.bigbackground.endFill();
 
-		this.chosenTiles = 'all_sprites';
+		for(i=0; i<8; i++) {
+			for(j=0; j<8; j++) {
+				this.add.sprite(20 + j*16, 100 + i*16, this.currentSpriteSheetName, j + i*8);
+			}
+		}
 
-		this.titleImage = this.add.sprite(0, 0, 'titlepage'); // background
-
-		this.currentTiles = this.add.sprite(20, 100, 'gameTiles');
-
-		this.map = this.game.add.tilemap('level1');
-		this.currentTileSet = this.map.addTilesetImage('example', this.chosenTiles);    
  
- 		this.add.button(182, 87, 'all_sprites', this.startGame, this, 1, 0, 2, 1);
-        this.add.button(183, 132, 'all_sprites', this.randomSpriteSheet, this, 10, 9, 11, 10);
+ 		this.add.button(182, 87, this.currentSpriteSheetName, this.startGame, this, 1, 0, 2, 1);
+        this.add.button(184, 132, this.currentSpriteSheetName, this.randomSpriteSheet, this, 10, 9, 11, 10);
 
 		this.enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
 		this.enterKey.onDown.add(this.startGame, this);
@@ -45,31 +47,22 @@ Koriki.MainMenu.prototype = {
 	},
 	randomSpriteSheet: function() {
 
-		
+		var allSheets = [];
+		for(i=0; i<99; i++) {
+			allSheets[i]= i;
+		}
+		this.currentSpriteSheetName = 'spritesheet' + Phaser.ArrayUtils.getRandomItem(allSheets);
+				currentSpriteSheetName = this.currentSpriteSheetName;
 
-		this.currentTiles.loadTexture('gameTiles2');
-
-		this.game.load.spritesheet('gametiles2');
-		this.tileset.setImage('gametiles2');
-		this.chosenTiles = 'gametiles2';
-//this.currentTileSet = this.map.addTilesetImage('example', this.currentTiles);    
-		/*
-		this.gametiles2 = this.load.image('gameTiles2', 'assets/images/example2.png'); 		
-		//this.currentTiles.loadTexture('gameTiles2');
-this.tiles.kill();
-this.tiles = this.load.image('gameTiles', 'assets/images/example2.png');
-		    //this.tiles.loadTexture('gameTiles2', 0, false);
-    this.sprites.loadTexture('gameTiles2', 0, false);
-this.currentTiles.kill();
-this.currentTiles = this.add.image(20, 100, 'gameTiles');
-
-
-
-		this.currentTiles.load.image= this.load.image('gameTiles2', 'assets/images/example2.png'); 		
- 	    this.currentSprites = this.add.sprite(0, 0, 'all_sprites');
- 	    this.currentTiles.key.loadTexture('gameTiles2');
- 	    this.sprites = this.game.load.spritesheet('all_sprites', 'assets/images/example2.png', 16, 16);
- 	    */
+	    this.bigbackground = this.game.add.graphics(0, 0);
+	    this.bigbackground.beginFill(0xFFFFFF);
+	    this.bigbackground.drawRect(20, 100, 128, 128);
+	    this.bigbackground.endFill();
+		for(i=0; i<8; i++) {
+			for(j=0; j<8; j++) {
+				this.add.sprite(20 + j*16, 100 + i*16, this.currentSpriteSheetName, j + i*8);
+			}
+		}
 	},
 
 	startGame: function() {
