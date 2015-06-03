@@ -11,20 +11,16 @@ Koriki.Preload.prototype = {
 
     this.load.setPreloadSprite(this.preloadBar);
 
-    //load game assets
     this.load.tilemap('level1', 'assets/tilemaps/ogre3.json', null, Phaser.Tilemap.TILED_JSON);
+
+
     this.load.image('gameTiles', 'assets/images/example.png');
-    this.load.image('potion', 'assets/images/potion.png');
-    this.load.image('coin', 'assets/images/coin.png');
-    this.load.image('player', 'assets/images/playr.png');
-    this.load.image('browndoor', 'assets/images/player.png');
-    this.load.image('titlepage', 'assets/images/example.png');
-
+    this.load.image('gameTiles2', 'assets/images/example2.png');
     this.game.load.spritesheet('all_sprites', 'assets/images/example.png', 16, 16);
-    
-    //, 64, 0, 0);
+   
+    this.load.image('titlepage', 'assets/images/koriki-title.png');
 
-    
+   
   },
   create: function() {
     this.state.start('MainMenu'); //, true, true);
