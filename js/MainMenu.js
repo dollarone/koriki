@@ -21,11 +21,14 @@ Koriki.MainMenu.prototype = {
 		
 		//this.tileset.setImage('http://swapshop.pixelsyntax.com/api/randomImage');
 
-
+		this.chosenTiles = 'all_sprites';
 
 		this.titleImage = this.add.sprite(0, 0, 'titlepage'); // background
 
 		this.currentTiles = this.add.sprite(20, 100, 'gameTiles');
+
+		this.map = this.game.add.tilemap('level1');
+		this.currentTileSet = this.map.addTilesetImage('example', this.chosenTiles);    
  
  		this.add.button(182, 87, 'all_sprites', this.startGame, this, 1, 0, 2, 1);
         this.add.button(183, 132, 'all_sprites', this.randomSpriteSheet, this, 10, 9, 11, 10);
@@ -43,10 +46,13 @@ Koriki.MainMenu.prototype = {
 	randomSpriteSheet: function() {
 
 		
+
 		this.currentTiles.loadTexture('gameTiles2');
 
 		this.game.load.spritesheet('gametiles2');
 		this.tileset.setImage('gametiles2');
+		this.chosenTiles = 'gametiles2';
+//this.currentTileSet = this.map.addTilesetImage('example', this.currentTiles);    
 		/*
 		this.gametiles2 = this.load.image('gameTiles2', 'assets/images/example2.png'); 		
 		//this.currentTiles.loadTexture('gameTiles2');
